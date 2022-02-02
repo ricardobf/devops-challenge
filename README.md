@@ -31,3 +31,16 @@ Body:
 - You don't have to support all HTTP methods, only GET and POST are enough
 - Include detailed steps to build, test, and clean the stack
 - You can use your preferred programming language to implement the simple web service
+
+
+**Tutorial**:
+
+- Install AWS CLI
+- Install Terraform
+
+aws configure --profile aws-dev-account
+
+cd resources/
+terraform init
+terraform workspace new dev
+terraform plan -var-file="config/dev.tfvars"
