@@ -43,7 +43,7 @@ aws configure --profile aws-dev-account
 cd resources/
 terraform init
 terraform workspace new dev
-terraform apply -var-file="config/dev.tfvars" -target="module.serverless-api.aws_s3_bucket.bucket"
+terraform apply -var-file="config/dev.tfvars"
 zip api folder
 upload api.zip to the bucket
 
