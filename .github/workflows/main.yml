@@ -24,9 +24,20 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      - name: Node.js setup
+        uses: actions/setup-node@v2.1.4
+        with:
+          node-version: 12.x
+
+      - name: Build
+        run: |
+          npm ci
+          npm run pack
+          cd api && zip -r -9 api.zip *
+
       - uses: kazimanzurrashid/aws-lambda-update-action@v1
         with:
-          zip-file: '/api/api.zip'
+          zip-file: 'api/api.zip'
           lambda-name: "api-function-${{ secrets.ENV }}-${{ secrets.AWS_REGION }}"
           publish: true
           AWS_REGION: ${{ secrets.AWS_REGION }}
