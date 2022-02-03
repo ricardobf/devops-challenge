@@ -24,13 +24,19 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      - name: Node.js setup
+        uses: actions/setup-node@v2.1.4
+        with:
+          node-version: 12.x
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Build
+        run: cd api && zip -r -9 api.zip *
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - uses: kazimanzurrashid/aws-lambda-update-action@v1
+        with:
+          zip-file: 'api/api.zip'
+          lambda-name: "api-function-${{ secrets.ENV }}-${{ secrets.AWS_REGION }}"
+          publish: true
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_SECRET_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
