@@ -5,8 +5,8 @@ exports.handler = function (event, context, callback) {
         statusCode: 200,
         body: JSON.stringify({
             Message: 'Welcome to our demo API, here are the details of your request:',
-            Headers: event.Headers.headers.content-type,
-            Method: event.Headers.httpMethod,
+            Headers: event.headers.content-type,
+            Method: event.httpMethod,
             Body: event.body,
         }),
     };
