@@ -11,17 +11,17 @@ The application is integrated with GitHub Actions to update the lambda function.
 - Create an AWS Account and then follow the steps to create a user and access key: https://docs.aws.amazon.com/powershell/latest/userguide/pstools-appendix-sign-up.html
 
 Run the following command to configure the AWS profile for your account:
-`# aws configure --profile aws-dev-account`
+- `# aws configure --profile aws-dev-account`
 
 Then, navigate to the resources folder:
-`# cd resources/`
+- `# cd resources/`
 
 Initialize Terraform and create a new workspace:
-`# terraform init`
-`# terraform workspace new dev`
+- `# terraform init`
+- `# terraform workspace new dev`
 
 Apply the infrastructure:
-`# terraform apply -var-file="config/dev.tfvars"`
+- `# terraform apply -var-file="config/dev.tfvars"`
 
 **Notes**:  
 
@@ -49,7 +49,7 @@ Get
 **Clean Up**
 
 Navigate to the resources folder:
-`# cd resources/`
+- `# cd resources/`
 
 Run the Terraform Destroy command:
-`# terraform destroy -var-file="config/dev.tfvars"`
+- `# terraform destroy -var-file="config/dev.tfvars"`
