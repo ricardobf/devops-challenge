@@ -1,5 +1,5 @@
 resource "aws_api_gateway_rest_api" "api_lambda" {
-  name        = "api-lambda-${var.env}-${var.region}"
+  name        = "api"
 }
 
 resource "aws_api_gateway_resource" "proxy" {
@@ -49,5 +49,5 @@ resource "aws_api_gateway_deployment" "api_deploy" {
    ]
 
    rest_api_id = aws_api_gateway_rest_api.api_lambda.id
-   stage_name  = "api-lambda-${var.env}-${var.region}"
+   stage_name  = "api"
 }
